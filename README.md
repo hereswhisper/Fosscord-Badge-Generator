@@ -8,5 +8,9 @@ Here are the launch commands:
 - `npm run console` will run a console/terminal version of the program.
 - `npm run web` will run the application in your web browser.
 
+
+Unless running the console/terminal version, be sure to run `npm install` before running the UI app or Web app.
+
+
 Example: STAFF,PARTNER,CERTIFIED_MODERATOR<br>
 Output: 262147
