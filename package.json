@@ -4,7 +4,7 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "start": "electron electron.js",
+    "start": "electron electron-app.js",
     "console": "node main.js",
     "web": "node run-web.js"
   },
