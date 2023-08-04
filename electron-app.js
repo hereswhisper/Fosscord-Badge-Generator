@@ -15,5 +15,4 @@ function boot() {
         createWindow();
     });
 }
-
-module.exports = boot;
+boot()
