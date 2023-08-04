@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fosscord Badge Generator UI</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="sidebar">
+        <ul id="checks">
+        </ul>
+    </div>
+    <div class="content">
+        <a style="font-size:34px;font-weight: 900;">Fosscord Badge Generation</a><br>
+        <a style="font-size:24px;font-weight: 500;">Your generated badge ID is <code id="result">0</code></a>
+    </div>
+    <script>
+        // For every badge in the badges array, add a list item to the checks list
+        function titleCase(inputText) {
+            if(inputText == "") return "Blank Badge";
+            return inputText
+                .toLowerCase()
+                .replaceAll("_", " ")
+                .replaceAll(/\b\w/g, (match) => match.toUpperCase());
+        }
+        const badges = [
+            { name: "STAFF", count: 1 },
+            { name: "PARTNER", count: 2 },
+            { name: "HYPESQUAD", count: 4 },
+            { name: "BUG_HUNTER_LEVEL_1", count: 8 },
+            { name: "MFA_SMS", count: 16 },
+            { name: "PREMIUM_PROMO_DISMISSED", count: 32 },
+            { name: "HYPESQUAD_ONLINE_HOUSE_1", count: 64 },
+            { name: "HYPESQUAD_ONLINE_HOUSE_2", count: 128 },
+            { name: "HYPESQUAD_ONLINE_HOUSE_3", count: 256 },
+            { name: "PREMIUM_EARLY_SUPPORTER", count: 512 },
+            { name: "TEAM_USER", count: 1024 },
+            { name: "", count: 2048 },
+            { name: "SYSTEM", count: 4096 },
+            { name: "HAS_UNREAD_URGENT_MESSAGES", count: 8192 },
+            { name: "BUG_HUNTER_LEVEL_2", count: 16384 },
+            { name: "UNDERAGE_DELETED", count: 32768 },
+            { name: "VERIFIED_BOT", count: 65536 },
+            { name: "VERIFIED_DEVELOPER", count: 131072 },
+            { name: "CERTIFIED_MODERATOR", count: 262144 },
+            { name: "BOT_HTTP_INTERACTIONS", count: 524288 },
+            { name: "SPAMMER", count: 1048576 },
+            { name: "DISABLE_PREMIUM", count: 2097152 },
+            { name: "ACTIVE_DEVELOPER", count: 4194304 }
+        ];
+        function makeListener(li) {
+            return (x)=>{
+                var current = parseInt(document.getElementById("result").innerText);
+                var badge = li.querySelector("input");
+                var newValue = current;
+                if (badge.checked) {
+                    newValue += parseInt(badge.value);
+                } else {
+                    newValue -= parseInt(badge.value);
+                }
+
+                document.getElementById("result").innerText = newValue;
+            }
+        }
+        const checks = document.getElementById("checks");
+        for (const badge of badges) {
+            const li = document.createElement("li");
+            li.innerHTML = `<input type="checkbox" id="${badge.name}" name="${badge.name}" value="${badge.count}"><label for="${badge.name}">${titleCase(badge.name)}</label>`;
+            li.addEventListener('change', makeListener(li));
+            checks.appendChild(li);
+        }
+    </script>
+</body>
+</html>
