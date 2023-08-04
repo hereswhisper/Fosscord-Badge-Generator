@@ -7,7 +7,7 @@ const createWindow = () => {
       title: "Fosscord Badge Generator UI"
     })
     
-    win.loadURL('https://localhost:5000')
+    win.loadURL('http://localhost:5000')
 }
 function boot() {
     runWeb();
